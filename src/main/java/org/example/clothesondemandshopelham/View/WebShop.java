@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Random;
 
 public class WebShop extends Application {
-    private double price = 0;
     private String priceStr;
     private ProductBuilder builder = new ProductBuilder();
     private Product product = new Product();
