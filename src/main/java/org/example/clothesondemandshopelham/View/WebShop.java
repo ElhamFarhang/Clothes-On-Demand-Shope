@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.example.clothesondemandshopelham.OrderService.OrderService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +18,29 @@ import java.util.Random;
 
 public class WebShop extends Application {
     private String priceStr;
-    private ProductBuilder builder = new ProductBuilder();
-    private Product product = new Product();
-    private Pants pants = new Pants();
-    private TShirt tShirt = new TShirt();
-    private Skirt skirt = new Skirt();
+    private ProductBuilder builder ;//= new ProductBuilder();
+    private Product product;// = new Product();
+    private Pants pants;
+    private TShirt tShirt;
+    private Skirt skirt;
     private List<Product> orderList = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         AnchorPane anchorPane=new AnchorPane();
         anchorPane.setPrefSize(400,600);
+        AnchorPane anchorPaneReceipt=new AnchorPane();
+        anchorPaneReceipt.setPrefSize(690,400);
+        Label labelReceipt= new Label("Receipt");
+        labelReceipt.setFont(new Font("Cambria Bold",12));
+        labelReceipt.setLayoutX(20);
+        labelReceipt.setLayoutY(30);
+        Button buttonClose= new Button("Close");
+        buttonClose.setPrefSize(180,30);
+        buttonClose.setLayoutX(255);
+        buttonClose.setLayoutY(330);
+        anchorPaneReceipt.getChildren().addAll(labelReceipt,buttonClose);
+        Scene receiptScene= new Scene(anchorPaneReceipt);
 
         Label labelCustomer= new Label("Customers Name:");
         labelCustomer.setFont(new Font("Cambria Bold",12));
@@ -247,16 +260,24 @@ public class WebShop extends Application {
             order.setId(orderId);
             order.setCustomer(customer);
             order.setProducts(orderList);
-            Receipt receipt = new Receipt(customer,order);
-            receipt.printReceipt();
-//            System.out.println(order.toString());
+
+            OrderService.getInstance().sendOrder(order);
+            labelReceipt.setText(OrderService.getInstance().sendReceipt(order,customer));
+            primaryStage.setScene(receiptScene);
         });
 
         anchorPane.getChildren().addAll(textArea,labelCustomer, textFieldName,labelEmail, textFieldEmail, labelAddress, textFieldAddress);
         anchorPane.getChildren().addAll(comboBoxCloths, comboBoxSize, comboBoxMaterial, comboBoxColor, comboBoxFit, comboBoxLength, comboBoxSleeves, comboBoxNeck, comboBoxWaistline, comboBoxPattern, labelPrice, buttonSelect, buttonOrder);
-        Scene scene=new Scene(anchorPane);
-        primaryStage.setScene(scene);
+        Scene homeScene=new Scene(anchorPane);
+        primaryStage.setScene(homeScene);
         primaryStage.show();
 
+        buttonClose.setOnAction(e->{
+            textFieldName.clear();
+            textFieldAddress.clear();
+            textFieldEmail.clear();
+            textArea.clear();
+            primaryStage.setScene(homeScene);
+        });
     }
 }

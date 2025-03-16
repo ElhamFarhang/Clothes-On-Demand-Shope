@@ -1,12 +1,9 @@
 package org.example.clothesondemandshopelham;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.clothesondemandshopelham.View.WebShop;
-
-import java.io.IOException;
+import java.lang.Exception;
 
 public class HelloApplication extends Application {
     private WebShop webShop = new WebShop();

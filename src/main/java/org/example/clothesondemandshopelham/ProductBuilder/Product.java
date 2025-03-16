@@ -10,7 +10,16 @@ public class Product {
     private String detail1;
     private String detail2;
 
-    public Product(){
+    public Product(String id, String productName, String size, String material, String color, double price) {
+        this.id = id;
+        this.productName = productName;
+        this.size = size;
+        this.material = material;
+        this.color = color;
+        this.price = price;
+    }
+
+    public Product() {
     }
 
     public String getId() {
@@ -75,16 +84,6 @@ public class Product {
 
     public void setDetail2(String detail2) {
         this.detail2 = detail2;
-    }
-
-    public Product(String id, String productName, String size, String material, String color, double price) {
-        this.id = id;
-        this.productName = productName;
-        this.size = size;
-        this.material = material;
-        this.color = color;
-        this.price = price;
-
     }
 
     @Override

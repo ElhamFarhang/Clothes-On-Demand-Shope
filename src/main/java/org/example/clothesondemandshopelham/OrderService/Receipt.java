@@ -1,5 +1,7 @@
-package org.example.clothesondemandshopelham.OrderObserver;
+package org.example.clothesondemandshopelham.OrderService;
 
+import org.example.clothesondemandshopelham.OrderObserver.Customer;
+import org.example.clothesondemandshopelham.OrderObserver.Order;
 import org.example.clothesondemandshopelham.ProductBuilder.Product;
 
 public class Receipt {
@@ -28,13 +30,12 @@ public class Receipt {
         this.totalPrice = totalPrice;
     }
 
-    public void printReceipt(){
-        System.out.println("Receipt:");
-        System.out.println(customer.toString());
-        System.out.println("Order:"+order.getId());
+    public String printReceipt(){
+        String orderStr="";
         for (Product product: order.getProducts()) {
-            System.out.println(product.toString());
+            orderStr= orderStr + "\n" +product.toString();
         }
-        System.out.println("Total price: " + getTotalPrice());
+        String receiptStr= "Receipt:\nOrderId: "+ order.getId() +"\n"+ customer.toString() +"\n"+ orderStr +"\nTotal price: " + getTotalPrice();
+        return receiptStr;
     }
 }
