@@ -4,6 +4,9 @@ public class TShirt extends Product {
     private String sleeves;
     private String neck;
 
+    public TShirt() {
+    }
+
     public TShirt(String sleeves, String neck) {
         this.sleeves = sleeves;
         this.neck = neck;

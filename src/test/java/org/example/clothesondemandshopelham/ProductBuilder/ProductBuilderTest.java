@@ -13,7 +13,7 @@ class ProductBuilderTest {
 
     @BeforeEach
     void setup(){
-        builder = new ProductBuilder(mockedProduct);
+        builder = new ProductBuilder();
         when(mockedProduct.getId()).thenReturn("1");
         when(mockedProduct.getProductName()).thenReturn("Pants");
         when(mockedProduct.getSize()).thenReturn("Small");
@@ -23,16 +23,16 @@ class ProductBuilderTest {
          }
 
     @Test
-    void whenProductBuilderIsInvokedReturnObject() {
-        Product result = builder.build();;
-        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Blue, price: "+ 599.0 +", detail1: null, detail2: null",result.toString());
+    void whenProductBuilderConstructorIsInvokedReturnObject() {
+        Product result = new Product();
+        assertEquals("id:null, productName: null, size: null, material: null, color: null, price: "+ 0.0 +", detail1: null, detail2: null" ,result.toString());
     }
 
-
     @Test
-    void whenProductBuilderConstructorIsInvokedReturnObject() {
-        Product result = new Product(mockedProduct.getId(),mockedProduct.getProductName(),mockedProduct.getSize(),mockedProduct.getMaterial(),mockedProduct.getColor(),mockedProduct.getPrice());
-        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Blue, price: "+ 599.0 +", detail1: null, detail2: null" ,result.toString());
+    void whenProductBuilderIsInvokedReturnObject() {
+        builder = new ProductBuilder(mockedProduct);
+        Product result = builder.build();
+        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Blue, price: "+ 599.0 +", detail1: null, detail2: null",result.toString());
     }
 
     @Test
@@ -67,12 +67,14 @@ class ProductBuilderTest {
 
     @Test
     void whenBuildIsInvokedReturnObject() {
+        builder = new ProductBuilder(mockedProduct);
         Product result = builder.build();
         assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Blue, price: "+ 599.0 +", detail1: null, detail2: null",result.toString());
     }
 
     @Test
     void whenBuildPantsIsInvokedReturnObject() {
+        builder = new ProductBuilder(mockedProduct);
         when(mockedProduct.getId()).thenReturn("1");
         when(mockedProduct.getProductName()).thenReturn("Pants");
         when(mockedProduct.getSize()).thenReturn("Small");
@@ -86,6 +88,7 @@ class ProductBuilderTest {
 
     @Test
     void whenBuildTShirtIsInvokedReturnObject() {
+        builder = new ProductBuilder(mockedProduct);
         when(mockedProduct.getId()).thenReturn("2");
         when(mockedProduct.getProductName()).thenReturn("TShirt");
         when(mockedProduct.getSize()).thenReturn("Small");
@@ -99,6 +102,7 @@ class ProductBuilderTest {
 
     @Test
     void whenBuildSkirtIsInvokedReturnObject() {
+        builder = new ProductBuilder(mockedProduct);
         when(mockedProduct.getId()).thenReturn("3");
         when(mockedProduct.getProductName()).thenReturn("Skirt");
         when(mockedProduct.getSize()).thenReturn("Small");

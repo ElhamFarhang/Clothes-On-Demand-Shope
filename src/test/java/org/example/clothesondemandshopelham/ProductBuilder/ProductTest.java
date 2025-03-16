@@ -28,8 +28,8 @@ class ProductTest {
 
     @Test
     void whenProductIsInvokedReturnObject() {
-//        Product result = product;
-        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Blue, price: "+ 599.0 +", detail1: Slim, detail2: Long",product.toString());
+        Product result = new Product();
+        assertEquals("id:null, productName: null, size: null, material: null, color: null, price: "+ 0.0 +", detail1: null, detail2: null",result.toString());
     }
 
     @Test

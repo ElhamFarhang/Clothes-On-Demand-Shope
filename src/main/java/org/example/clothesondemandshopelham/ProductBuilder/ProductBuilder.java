@@ -2,7 +2,10 @@ package org.example.clothesondemandshopelham.ProductBuilder;
 
 public class ProductBuilder {
 
-    Product product;// = new Product();
+    Product product = new Product();
+
+    public ProductBuilder() {
+    }
 
     public ProductBuilder(Product product) {
         this.product = product;

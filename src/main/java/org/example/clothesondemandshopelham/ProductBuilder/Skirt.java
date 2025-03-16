@@ -5,6 +5,8 @@ public class Skirt extends Product {
     private String waistline;
     private String pattern;
 
+    public Skirt() {
+    }
 
     public Skirt(String waistline, String pattern) {
         this.waistline = waistline;

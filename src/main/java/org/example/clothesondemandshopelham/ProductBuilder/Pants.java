@@ -4,6 +4,8 @@ public class Pants extends Product {
     private String fit;
     private String length;
 
+    public Pants() {
+    }
 
     public Pants(String id, String productName, String size, String material, String color, double price, String fit, String length) {
         super("1", productName, size, material, color, 599);

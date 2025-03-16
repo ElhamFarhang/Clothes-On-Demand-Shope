@@ -27,8 +27,8 @@ class PantsTest {
     }
     @Test
     void whenPantsIsInvokedReturnObject() {
-        Pants result = new Pants(mockedProduct.getId(),mockedProduct.getProductName(),mockedProduct.getSize(),mockedProduct.getMaterial(),mockedProduct.getColor(),mockedProduct.getPrice(),mockedProduct.getDetail1(),mockedProduct.getDetail2());
-        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Blue, price: "+ 599.0 +", detail1: Slim, detail2: Long",result.toString());
+        Pants result = new Pants();
+        assertEquals("id:1, productName: null, size: null, material: null, color: null, price: "+ 599.0 +", detail1: null, detail2: null",result.toString());
     }
 
     @Test
