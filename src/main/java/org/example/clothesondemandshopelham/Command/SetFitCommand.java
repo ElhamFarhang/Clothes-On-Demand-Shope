@@ -14,6 +14,5 @@ public class SetFitCommand implements Command{
     public void design(Product product) {
         if (product instanceof Pants)
             ((Pants) product).setFit(fit);
-        System.out.println(product);
     }
 }

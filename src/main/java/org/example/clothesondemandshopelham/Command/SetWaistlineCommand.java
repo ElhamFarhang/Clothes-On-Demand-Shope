@@ -14,7 +14,5 @@ public class SetWaistlineCommand implements Command{
     public void design(Product product) {
         if (product instanceof Skirt)
             ((Skirt) product).setWaistline(waistline);
-        System.out.println(product);
-
     }
 }

@@ -14,6 +14,5 @@ public class SetLengthCommand implements Command{
     public void design(Product product) {
         if (product instanceof Pants)
             ((Pants) product).setLength(length);
-        System.out.println(product);
     }
 }

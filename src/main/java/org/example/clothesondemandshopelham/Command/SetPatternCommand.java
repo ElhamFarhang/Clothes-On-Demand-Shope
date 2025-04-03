@@ -14,7 +14,5 @@ public class SetPatternCommand implements Command{
     public void design(Product product) {
         if (product instanceof Skirt)
             ((Skirt) product).setPattern(pattern);
-        System.out.println(product);
-
     }
 }

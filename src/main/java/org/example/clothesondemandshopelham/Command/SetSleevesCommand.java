@@ -14,7 +14,5 @@ public class SetSleevesCommand implements Command{
     public void design(Product product) {
         if (product instanceof TShirt)
             ((TShirt) product).setSleeves(sleeves);
-        System.out.println(product);
-
     }
 }

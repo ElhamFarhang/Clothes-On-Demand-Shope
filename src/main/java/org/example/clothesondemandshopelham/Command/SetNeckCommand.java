@@ -14,7 +14,5 @@ public class SetNeckCommand implements Command{
     public void design(Product product) {
         if (product instanceof TShirt)
             ((TShirt) product).setNeck(neck);
-        System.out.println(product);
-
     }
 }
