@@ -98,9 +98,4 @@ public class Product {
                 ", detail1: " + detail1 +
                 ", detail2: " + detail2 ;
     }
-
-    public String decorate(){
-        String details="";
-        return details;
-    }
 }

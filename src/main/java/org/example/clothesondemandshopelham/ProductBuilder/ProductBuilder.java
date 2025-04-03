@@ -41,15 +41,15 @@ public class ProductBuilder {
         return new Product(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice());
     }
 
-    public Pants buildPants(String fit, String length){
-        return new Pants(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice(),fit,length);
+    public Pants buildPants(){
+        return new Pants(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice());
     }
 
-    public TShirt buildTShirt(String sleeves, String neck){
-        return new TShirt(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice(),sleeves,neck);
+    public TShirt buildTShirt(){
+        return new TShirt(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice());
     }
 
-    public Skirt buildSkirt(String waistline, String pattern){
-        return new Skirt(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice(),waistline,pattern);
+    public Skirt buildSkirt(){
+        return new Skirt(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice());
     }
 }

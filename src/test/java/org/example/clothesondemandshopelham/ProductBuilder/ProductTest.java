@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class ProductTest {
     Product product;
@@ -17,6 +16,12 @@ class ProductTest {
         product.setDetail1("Slim");
         product.setDetail2("Long");
         }
+
+    @Test
+    void shouldCreateProductWithDefaultValues() {
+        Product result = new Product(product.getId(),product.getProductName(),product.getSize(),product.getMaterial(),product.getColor(),product.getPrice());
+        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Blue, price: "+ 599.0 +", detail1: null, detail2: null" ,result.toString());
+    }
 
     @Test
     void whenProductConstructorIsInvokedReturnObject() {
@@ -135,10 +140,4 @@ class ProductTest {
         assertEquals(expected,result);
     }
 
-    @Test
-    void whenDecorateIsInvokedReturnString() {
-        String result = product.decorate();
-        String expected = "";
-        assertEquals(expected,result);
-    }
 }

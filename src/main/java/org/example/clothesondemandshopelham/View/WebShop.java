@@ -21,6 +21,7 @@ public class WebShop extends Application {
     private String priceStr;
     private ProductBuilder builder = new ProductBuilder();
     private Product product = new Product();
+    private DesignProduct pipeline = new DesignProduct();
     private Pants pants = new Pants();
     private TShirt tShirt = new TShirt();
     private Skirt skirt = new Skirt();
@@ -173,7 +174,6 @@ public class WebShop extends Application {
                 comboBoxNeck.setDisable(true);
                 comboBoxPattern.setDisable(true);
                 comboBoxWaistline.setDisable(true);
-                labelPrice.setText(String.valueOf(pants.getPrice()));
             }else if (comboBoxCloths.getValue().equals("TShirt")) {
                 comboBoxSleeves.setDisable(false);
                 comboBoxNeck.setDisable(false);
@@ -181,7 +181,6 @@ public class WebShop extends Application {
                 comboBoxLength.setDisable(true);
                 comboBoxPattern.setDisable(true);
                 comboBoxWaistline.setDisable(true);
-                labelPrice.setText(String.valueOf(tShirt.getPrice()));
             }else if (comboBoxCloths.getValue().equals("Skirt")) {
                 comboBoxFit.setDisable(true);
                 comboBoxLength.setDisable(true);
@@ -189,7 +188,6 @@ public class WebShop extends Application {
                 comboBoxNeck.setDisable(true);
                 comboBoxPattern.setDisable(false);
                 comboBoxWaistline.setDisable(false);
-                labelPrice.setText(String.valueOf(skirt.getPrice()));
             }
         });
 
@@ -201,76 +199,76 @@ public class WebShop extends Application {
         buttonSelect.setOnAction(e-> {
             try{
                 if (comboBoxCloths.getValue().equals("Pants")) {
-                    Pants product1 = builder
+                    Pants pants1 = builder
                             .setId(pants.getId())
                             .setProductName(comboBoxCloths.getValue())
                             .setSize(comboBoxSize.getValue())
                             .setMaterial(comboBoxMaterial.getValue())
                             .setColor(comboBoxColor.getValue())
                             .setPrice(pants.getPrice())
-                            .buildPants(comboBoxFit.getValue(), comboBoxLength.getValue());
-                    product = product1;
-                    product.setDetail1(product1.getFit());
-                    product.setDetail2(product1.getLength());
-                    textArea.appendText(product1.toString());
-                    DesignPants decorateCommand = new DesignPants(product1);
-                    textArea.appendText("\n" + decorateCommand.designProduct());
-
-                } else if (comboBoxCloths.getValue().equals("TShirt")) {
-                    TShirt product2 = builder
+                            .buildPants();
+                    product = pants1;
+                    pipeline.addCommand(new SetFitCommand(comboBoxFit.getValue()));
+                    pipeline.addCommand(new SetLengthCommand(comboBoxLength.getValue()));
+                    textArea.appendText("\n" + pipeline.execute(product));
+                    pipeline.clear();
+                }
+                else if (comboBoxCloths.getValue().equals("TShirt")) {
+                    TShirt tShirt1 = builder
                             .setId(tShirt.getId())
                             .setProductName(comboBoxCloths.getValue())
                             .setSize(comboBoxSize.getValue())
                             .setMaterial(comboBoxMaterial.getValue())
                             .setColor(comboBoxColor.getValue())
                             .setPrice(tShirt.getPrice())
-                            .buildTShirt(comboBoxSleeves.getValue(), comboBoxNeck.getValue());
-                    product = product2;
-                    product.setDetail1(product2.getSleeves());
-                    product.setDetail2(product2.getNeck());
-                    textArea.appendText(product2.toString());
-                    DesignTShirt decorateCommand = new DesignTShirt(product2);
-                    textArea.appendText("\n" + decorateCommand.designProduct());
-
-                } else if (comboBoxCloths.getValue().equals("Skirt")) {
-                    Skirt product3 = builder
+                            .buildTShirt();
+                    product = tShirt1;
+                    pipeline.addCommand(new SetSleevesCommand(comboBoxSleeves.getValue()));
+                    pipeline.addCommand(new SetNeckCommand(comboBoxNeck.getValue()));
+                    textArea.appendText("\n" + pipeline.execute(product));
+                    pipeline.clear();
+                }
+                else if (comboBoxCloths.getValue().equals("Skirt")) {
+                    Skirt skirt1 = builder
                             .setId(skirt.getId())
                             .setProductName(comboBoxCloths.getValue())
                             .setSize(comboBoxSize.getValue())
                             .setMaterial(comboBoxMaterial.getValue())
                             .setColor(comboBoxColor.getValue())
                             .setPrice(skirt.getPrice())
-                            .buildSkirt(comboBoxWaistline.getValue(), comboBoxPattern.getValue());
-                    product = product3;
-                    product.setDetail1(product3.getWaistline());
-                    product.setDetail2(product3.getPattern());
-                    textArea.appendText(product3.toString());
-                    DesignSkirt decorateCommand = new DesignSkirt(product3);
-                    textArea.appendText("\n" + decorateCommand.designProduct());
+                            .buildSkirt();
+                    product = skirt1;
+                    pipeline.addCommand(new SetWaistlineCommand(comboBoxWaistline.getValue()));
+                    pipeline.addCommand(new SetPatternCommand(comboBoxPattern.getValue()));
+                    textArea.appendText("\n" + pipeline.execute(product));
+                    pipeline.clear();
+
                 }
                 priceStr = String.valueOf(product.getPrice());
                 labelPrice.setText(priceStr);
                 orderList.add(product);
-                buttonOrder.setDisable(false);
+
         } catch (Exception ex) {
                 System.out.println("Choose a product please!");
             }
+            buttonOrder.setDisable(false);
             });
 
         buttonOrder.setOnAction(e->{
-            Random random = new Random();
-            int cusID = random.nextInt(1000);
-            int orderId= random.nextInt(1000);
-            Customer customer = new Customer(cusID,textFieldName.getText(),textFieldAddress.getText(),textFieldEmail.getText());
-            CEO ceo = new CEO();
-            Order order = new Order();
-            order.addPropertyChangeListener(ceo);
-            order.setId(orderId);
-            order.setCustomer(customer);
-            order.setProducts(orderList);
+                Random random = new Random();
+                int cusID = random.nextInt(1000);
+                int orderId = random.nextInt(1000);
+                Customer customer = new Customer(cusID, textFieldName.getText(), textFieldAddress.getText(), textFieldEmail.getText());
+                CEO ceo = new CEO();
+                Order order = new Order();
+                order.addPropertyChangeListener(ceo);
+                order.setId(orderId);
+                order.setCustomer(customer);
+                order.setProducts(orderList);
 
             OrderService.getInstance().sendOrder(order);
             labelReceipt.setText(OrderService.getInstance().sendReceipt(order,customer));
+            orderList.clear();
             primaryStage.setScene(receiptScene);
         });
 
@@ -286,6 +284,7 @@ public class WebShop extends Application {
             textFieldEmail.clear();
             textArea.clear();
             primaryStage.setScene(homeScene);
+            buttonOrder.setDisable(true);
         });
     }
 }

@@ -82,8 +82,8 @@ class ProductBuilderTest {
         when(mockedProduct.getColor()).thenReturn("Black");
         when(mockedProduct.getDetail1()).thenReturn("Slim");
         when(mockedProduct.getDetail2()).thenReturn("Long");
-        Pants result = builder.buildPants("Slim","Long");
-        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Black, price: "+ 599.0 +", detail1: Slim, detail2: Long",result.toString());
+        Pants result = builder.buildPants();
+        assertEquals("id:1, productName: Pants, size: Small, material: Cotton, color: Black, price: "+ 599.0 +", detail1: null, detail2: null",result.toString());
     }
 
     @Test
@@ -96,8 +96,8 @@ class ProductBuilderTest {
         when(mockedProduct.getColor()).thenReturn("Black");
         when(mockedProduct.getDetail1()).thenReturn("ShortSleeve");
         when(mockedProduct.getDetail2()).thenReturn("VNeck");
-        TShirt result = builder.buildTShirt("ShortSleeve","VNeck");
-        assertEquals("id:2, productName: TShirt, size: Small, material: Cotton, color: Black, price: "+ 399.0 +", detail1: ShortSleeve, detail2: VNeck",result.toString());
+        TShirt result = builder.buildTShirt();
+        assertEquals("id:2, productName: TShirt, size: Small, material: Cotton, color: Black, price: "+ 399.0 +", detail1: null, detail2: null",result.toString());
     }
 
     @Test
@@ -110,8 +110,8 @@ class ProductBuilderTest {
         when(mockedProduct.getColor()).thenReturn("Black");
         when(mockedProduct.getDetail1()).thenReturn("Slim");
         when(mockedProduct.getDetail2()).thenReturn("Plain");
-        Skirt result = builder.buildSkirt("Slim","Plain");
-        assertEquals("id:3, productName: Skirt, size: Small, material: Cotton, color: Black, price: "+ 499.0 +", detail1: Slim, detail2: Plain",result.toString());
+        Skirt result = builder.buildSkirt();
+        assertEquals("id:3, productName: Skirt, size: Small, material: Cotton, color: Black, price: "+ 499.0 +", detail1: null, detail2: null",result.toString());
     }
 
 }

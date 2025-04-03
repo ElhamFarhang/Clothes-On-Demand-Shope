@@ -8,14 +8,15 @@ public class Skirt extends Product {
     public Skirt() {
     }
 
-    public Skirt(String waistline, String pattern) {
-        this.waistline = waistline;
-        this.pattern = pattern;
+    public Skirt(String id, String productName, String size, String material, String color, double price) {
+        super("3", productName, size, material, color, 499);
     }
 
-    public Skirt(String id, String productName, String size, String material, String color, double price, String waistline, String pattern) {
-        super("3", productName, size, material, color, 499);
+    public void setWaistline(String waistline) {
         this.waistline = waistline;
+    }
+
+    public void setPattern(String pattern) {
         this.pattern = pattern;
     }
 
@@ -25,12 +26,6 @@ public class Skirt extends Product {
 
     public String getPattern() {
         return pattern;
-    }
-
-    @Override
-    public String decorate() {
-        String details="Skirt decorated: Waistline=" + waistline + ", Pattern=" + pattern+ "\n";
-        return details;
     }
 
     @Override

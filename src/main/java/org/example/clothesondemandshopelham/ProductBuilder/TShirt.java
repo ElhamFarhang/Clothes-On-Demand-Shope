@@ -7,14 +7,15 @@ public class TShirt extends Product {
     public TShirt() {
     }
 
-    public TShirt(String sleeves, String neck) {
-        this.sleeves = sleeves;
-        this.neck = neck;
+    public TShirt(String id, String productName, String size, String material, String color, double price) {
+        super("2", productName, size, material, color, 399);
     }
 
-    public TShirt(String id, String productName, String size, String material, String color, double price, String sleeves, String neck) {
-        super("2", productName, size, material, color, 399);
+    public void setSleeves(String sleeves) {
         this.sleeves = sleeves;
+    }
+
+    public void setNeck(String neck) {
         this.neck = neck;
     }
 
@@ -24,12 +25,6 @@ public class TShirt extends Product {
 
     public String getNeck() {
         return neck;
-    }
-
-    @Override
-    public String  decorate() {
-        String details="T-Shirt decorated: Sleeves=" + sleeves + ", Neck=" + neck+ "\n";
-        return details;
     }
 
     @Override

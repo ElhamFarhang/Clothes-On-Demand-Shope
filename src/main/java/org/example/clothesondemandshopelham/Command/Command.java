@@ -1,5 +1,8 @@
 package org.example.clothesondemandshopelham.Command;
 
+import org.example.clothesondemandshopelham.ProductBuilder.Product;
+
 public interface Command {
-    String designProduct();
+
+    void design(Product product);
 }

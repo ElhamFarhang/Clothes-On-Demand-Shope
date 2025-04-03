@@ -7,28 +7,24 @@ public class Pants extends Product {
     public Pants() {
     }
 
-    public Pants(String id, String productName, String size, String material, String color, double price, String fit, String length) {
+    public Pants(String id, String productName, String size, String material, String color, double price) {
         super("1", productName, size, material, color, 599);
-        this.fit = fit;
-        this.length = length;
     }
 
-    public Pants(String fit, String length) {
+    public void setFit(String fit) {
         this.fit = fit;
+    }
+
+    public void setLength(String length) {
         this.length = length;
     }
 
     public String getFit() {
         return fit;
     }
+
     public String getLength() {
         return length;
-    }
-
-    @Override
-    public String decorate() {
-        String details="Pants decorated: Fit=" + fit + ", Length=" + length + "\n";
-        return details;
     }
 
     @Override
@@ -38,7 +34,7 @@ public class Pants extends Product {
                ", size: " + super.getSize() +
                ", material: " + super.getMaterial() +
                ", color: " + super.getColor() +
-               ", price: 599.0"  +
+               ", price: 599.0"+
                ", detail1: " + fit +
                ", detail2: " + length ;
     }
